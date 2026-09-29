@@ -1,0 +1,318 @@
+const BASE_URL = "http://localhost:4001";
+
+const INITIAL_DATA = {
+    services: [
+        {
+            id: "SERV-01",
+            categoria: "faciales",
+            nombre: "HydraGlow Luxury Facial",
+            descripcion: "Limpieza profunda con microdermoabrasión de punta de diamante, infusión de ácido hialurónico y fototerapia LED.",
+            duracion: "60 min",
+            precio: 120,
+            imagen: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
+            destacado: true
+        },
+        {
+            id: "SERV-02",
+            categoria: "faciales",
+            nombre: "Peeling Químico Renovador",
+            descripcion: "Tratamiento médico-estético para atenuar manchas, alisar textura y revitalizar la luminosidad cutánea.",
+            duracion: "45 min",
+            precio: 150,
+            imagen: "https://images.unsplash.com/photo-1512290900676-26c2a48f572d?auto=format&fit=crop&w=800&q=80",
+            destacado: false
+        },
+        {
+            id: "SERV-03",
+            categoria: "masajes",
+            nombre: "Masaje Holístico con Piedras Volcánicas",
+            descripcion: "Ritual de relajación corporal profunda con aceite caliente de sésamo, orquídeas y piedras basálticas.",
+            duracion: "75 min",
+            precio: 110,
+            imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
+            destacado: true
+        },
+        {
+            id: "SERV-04",
+            categoria: "masajes",
+            nombre: "Drenaje Linfático Detox",
+            descripcion: "Técnica manual especializada para eliminar toxinas, reducir retención de líquidos y mejorar la circulación.",
+            duracion: "60 min",
+            precio: 95,
+            imagen: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80",
+            destacado: false
+        },
+        {
+            id: "SERV-05",
+            categoria: "corporales",
+            nombre: "Radiofrecuencia Corporal & Moldeo",
+            descripcion: "Tecnología avanzada para reafirmar la piel, estimular producción de colágeno y definir la silueta.",
+            duracion: "60 min",
+            precio: 180,
+            imagen: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80",
+            destacado: true
+        },
+        {
+            id: "SERV-06",
+            categoria: "medicina",
+            nombre: "Armonización Facial & Ácido Hialurónico",
+            descripcion: "Relleno sutil para labios y pómulos con ácido hialurónico de reticulación premium por especialista médico.",
+            duracion: "50 min",
+            precio: 350,
+            imagen: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+            destacado: true
+        }
+    ],
+    requests: [
+        {
+            id: "CITA-9041",
+            cliente: "Elena Rostova",
+            email: "elena.rostova@example.com",
+            telefono: "+52 55 9876 5432",
+            servicio: "HydraGlow Luxury Facial",
+            categoria: "faciales",
+            especialista: "Dra. Sofía Valenzuela",
+            fecha: "2026-09-28",
+            hora: "10:30 AM",
+            montoFinal: 120,
+            estado: "pendiente",
+            notas: "Piel sensible. Prefiere productos orgánicos.",
+            solicitante: "Elena Rostova",
+            creadoEn: "2026-09-25T10:15:00.000Z"
+        },
+        {
+            id: "CITA-8492",
+            cliente: "Camila Mendoza",
+            email: "camila.m@example.com",
+            telefono: "+52 55 1234 5678",
+            servicio: "Masaje Holístico con Piedras Volcánicas",
+            categoria: "masajes",
+            especialista: "Lic. Valentina Ríos",
+            fecha: "2026-09-26",
+            hora: "03:00 PM",
+            montoFinal: 110,
+            estado: "confirmado",
+            notas: "Enfocar tensión en hombros y espalda baja.",
+            solicitante: "Camila Mendoza",
+            creadoEn: "2026-09-24T14:30:00.000Z"
+        },
+        {
+            id: "CITA-7310",
+            cliente: "Isabella Sterling",
+            email: "isabella.s@example.com",
+            telefono: "+52 55 4433 2211",
+            servicio: "Armonización Facial & Ácido Hialurónico",
+            categoria: "medicina",
+            especialista: "Dra. Sofía Valenzuela",
+            fecha: "2026-09-25",
+            hora: "12:00 PM",
+            montoFinal: 350,
+            estado: "completado",
+            notas: "Consulta previa realizada. Evaluación satisfactoria.",
+            solicitante: "Isabella Sterling",
+            creadoEn: "2026-09-22T09:00:00.000Z"
+        }
+    ],
+    messages: [
+        {
+            id: "MSG-901",
+            remitente: "Ana Sofía Ramírez",
+            email: "ana.ramirez@example.com",
+            telefono: "+52 55 9988 7711",
+            tipo: "contacto",
+            asunto: "Consulta de Cotización Spa Party",
+            contenido: "Hola, quisiera cotizar una sesión completa para un grupo de 4 personas este fin de semana.",
+            fecha: "2026-09-25T14:10:00.000Z",
+            leido: false,
+            rolDestino: "super-admin"
+        },
+        {
+            id: "MSG-902",
+            remitente: "Elena Rostova",
+            email: "elena.rostova@example.com",
+            telefono: "+52 55 9876 5432",
+            tipo: "cita",
+            asunto: "Nueva Solicitud de Cita (CITA-9041)",
+            contenido: "Solicitó reserva para HydraGlow Luxury Facial el 28 de Septiembre a las 10:30 AM.",
+            fecha: "2026-09-25T10:15:00.000Z",
+            leido: false,
+            rolDestino: "super-admin"
+        }
+    ],
+    roles: [
+        {
+            id: "super-admin",
+            nombre: "Directora Médica & Admin",
+            especialista: "Dra. Sofía Valenzuela",
+            experiencia: "12 años en Medicina Estética",
+            esAdmin: true,
+            permisos: ["dashboard", "catalogo", "agendar_citas", "gestion_kanban", "mensajes_notificaciones", "equipo_rbac", "auditoria"]
+        },
+        {
+            id: "manager",
+            nombre: "Cosmiatra Senior & Therapist",
+            especialista: "Lic. Valentina Ríos",
+            experiencia: "8 años en Spa & Holística",
+            esAdmin: false,
+            permisos: ["dashboard", "catalogo", "agendar_citas", "gestion_kanban"]
+        },
+        {
+            id: "cliente",
+            nombre: "Cliente / Usuario Común",
+            especialista: "Usuario Registrado",
+            experiencia: "Acceso de Consulta & Cotización",
+            esAdmin: false,
+            permisos: ["catalogo", "agendar_citas", "contacto_cotizar"]
+        }
+    ],
+    auditLogs: [
+        {
+            id: "log-101",
+            accion: "CITA_RESERVADA",
+            actor: "Elena Rostova",
+            detalle: "Reservó cita para HydraGlow Luxury Facial (CITA-9041)",
+            fecha: "2026-09-25T10:15:00.000Z"
+        },
+        {
+            id: "log-100",
+            accion: "CITA_CONFIRMADA",
+            actor: "Dra. Sofía Valenzuela",
+            detalle: "Confirmó cita CITA-8492 para Camila Mendoza",
+            fecha: "2026-09-24T15:00:00.000Z"
+        }
+    ]
+};
+
+function getLocalDb() {
+    try {
+        const stored = localStorage.getItem("aura_spa_db_v3");
+        if (stored) return JSON.parse(stored);
+        localStorage.setItem("aura_spa_db_v3", JSON.stringify(INITIAL_DATA));
+        return JSON.parse(JSON.stringify(INITIAL_DATA));
+    } catch {
+        return JSON.parse(JSON.stringify(INITIAL_DATA));
+    }
+}
+
+function saveLocalDb(db) {
+    try {
+        localStorage.setItem("aura_spa_db_v3", JSON.stringify(db));
+    } catch (e) {
+        console.error("Error saving mock db:", e);
+    }
+}
+
+async function request(path, options = {}) {
+    try {
+        const res = await fetch(`${BASE_URL}${path}`, {
+            headers: { "Content-Type": "application/json" },
+            ...options,
+        });
+        if (!res.ok) {
+            throw new Error(`Error ${res.status} en ${path}`);
+        }
+        return res.status === 204 ? null : await res.json();
+    } catch (err) {
+        return handleLocalFallback(path, options);
+    }
+}
+
+function handleLocalFallback(path, options) {
+    const db = getLocalDb();
+    const method = (options.method || "GET").toUpperCase();
+    const url = new URL(path, "http://localhost");
+    const pathname = url.pathname;
+
+    if (pathname.startsWith("/services")) {
+        return db.services;
+    }
+
+    if (pathname.startsWith("/requests")) {
+        const parts = pathname.split("/").filter(Boolean);
+        if (method === "GET") {
+            return [...db.requests].sort((a, b) => new Date(b.creadoEn || b.fecha) - new Date(a.creadoEn || a.fecha));
+        }
+        if (method === "POST") {
+            const body = JSON.parse(options.body || "{}");
+            db.requests.unshift(body);
+            saveLocalDb(db);
+            return body;
+        }
+        if (method === "PATCH" && parts[1]) {
+            const id = parts[1];
+            const body = JSON.parse(options.body || "{}");
+            const item = db.requests.find((r) => r.id === id);
+            if (item) {
+                Object.assign(item, body);
+                saveLocalDb(db);
+            }
+            return item || null;
+        }
+    }
+
+    if (pathname.startsWith("/messages")) {
+        const parts = pathname.split("/").filter(Boolean);
+        if (method === "GET") {
+            return [...(db.messages || [])].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        }
+        if (method === "POST") {
+            const body = JSON.parse(options.body || "{}");
+            if (!db.messages) db.messages = [];
+            db.messages.unshift(body);
+            saveLocalDb(db);
+            return body;
+        }
+        if (method === "PATCH" && parts[1]) {
+            const id = parts[1];
+            const body = JSON.parse(options.body || "{}");
+            const item = (db.messages || []).find((m) => m.id === id);
+            if (item) {
+                Object.assign(item, body);
+                saveLocalDb(db);
+            }
+            return item || null;
+        }
+    }
+
+    if (pathname.startsWith("/roles")) {
+        return db.roles;
+    }
+
+    if (pathname.startsWith("/auditLogs")) {
+        if (method === "GET") {
+            return [...db.auditLogs].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        }
+        if (method === "POST") {
+            const body = JSON.parse(options.body || "{}");
+            db.auditLogs.unshift(body);
+            saveLocalDb(db);
+            return body;
+        }
+    }
+
+    return null;
+}
+
+export const getServices = () => request("/services");
+export const getRequests = () => request("/requests");
+export const createRequest = (data) =>
+    request("/requests", { method: "POST", body: JSON.stringify(data) });
+export const updateRequestStatus = (id, estado) =>
+    request(`/requests/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ estado }),
+    });
+
+export const getMessages = () => request("/messages");
+export const createMessage = (data) =>
+    request("/messages", { method: "POST", body: JSON.stringify(data) });
+export const markMessageAsRead = (id) =>
+    request(`/messages/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ leido: true }),
+    });
+
+export const getRoles = () => request("/roles");
+export const getAuditLogs = () => request("/auditLogs");
+export const addAuditLog = (data) =>
+    request("/auditLogs", { method: "POST", body: JSON.stringify(data) });
